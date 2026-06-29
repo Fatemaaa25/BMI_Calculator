@@ -3,9 +3,13 @@ import 'package:bmi/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 
 import '../components/bottom_button.dart';
-import 'input_page.dart';
 
 class ResultsPage extends StatelessWidget {
+  ResultsPage({required this.bmiResult,required this.bmiInterpretation,required this.resultText});
+
+  final String bmiResult;
+  final String bmiInterpretation;
+  final String resultText;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +23,8 @@ class ResultsPage extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
+                alignment: Alignment.bottomLeft,
+                padding: EdgeInsets.all(15.0),
                 child: Text('Your Result', style: kTitleTextStyle,),
               ),
             ),
@@ -29,10 +35,10 @@ class ResultsPage extends StatelessWidget {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text('Normal', style: kResultTextStyle),
-                    Text('18.3', style: kBMITextStyle),
+                    Text(resultText, style: kResultTextStyle),
+                    Text(bmiResult, style: kBMITextStyle),
                     Text(
-                      'blah blah',
+                      bmiInterpretation,
                       style: kBodyTextStyle,
                       textAlign: TextAlign.center,
                     ),
