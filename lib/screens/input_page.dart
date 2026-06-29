@@ -1,8 +1,11 @@
-import 'package:bmi/reusable_card.dart';
+import 'package:bmi/components/bottom_button.dart';
+import 'package:bmi/screens/results_page.dart';
+import 'package:bmi/components/reusable_card.dart';
+import 'package:bmi/components/round_icon_button.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
-import 'icon_content.dart';
+import '../constants/constants.dart';
+import '../components/icon_content.dart';
 
 enum Gender { male, female }
 
@@ -145,8 +148,8 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('AGE',style: kLabelTextStyle,),
-                        Text(age.toString(),style: kNumberTextStyle,),
+                        Text('AGE', style: kLabelTextStyle),
+                        Text(age.toString(), style: kNumberTextStyle),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -175,11 +178,14 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColour,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          BottomButton(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ResultsPage()),
+              );
+            },
+            buttonText: "CALCULATE",
           ),
         ],
       ),
@@ -187,19 +193,4 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.icon, this.onPress});
-  final IconData? icon;
-  final void Function()? onPress;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      shape: CircleBorder(),
-      onPressed: onPress,
-      fillColor: Color(0xFF4C4F5E),
-    );
-  }
-}
+
